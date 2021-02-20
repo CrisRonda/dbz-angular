@@ -1,0 +1,18 @@
+.spacing {
+  flex: 1 1 auto;
+}
+.container-buttons {
+  margin: 32px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.toolbar-small {
+  position: sticky;
+  top: 50px;
+  height: 32px;
+  background-color: black;
+}
+
+.toolbar-small span {
+  font-size: 12px;
+}
