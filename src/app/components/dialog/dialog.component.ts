@@ -6,6 +6,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { Character } from 'src/app/models/character';
+import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'app-dialog',
@@ -23,6 +24,7 @@ export class DialogComponent {
     { id: 6, label: 'Desconocido' },
   ];
   initialValues = {
+    id: [this.data.id, [Validators.required]],
     name: [
       this.data.name,
       [Validators.required, Validators.minLength(4), Validators.maxLength(64)],
@@ -42,7 +44,8 @@ export class DialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     private form: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: Character
+    @Inject(MAT_DIALOG_DATA) public data: Character,
+    private CharacterService: CharacterService
   ) {}
   getErrorMessage(field: string): string {
     let mesj;
@@ -68,5 +71,12 @@ export class DialogComponent {
     const fieldActions = _field.touched || _field.dirty;
     return fieldActions && !_field.valid;
   }
-  onSubmit() {}
+  onSubmit() {
+    const formValues = this.formData.value;
+    const formatValues = { ...formValues, race: formValues.race.label };
+    this.CharacterService.update({
+      values: formatValues,
+      onSuccess: () => this.dialogRef.close(),
+    });
+  }
 }

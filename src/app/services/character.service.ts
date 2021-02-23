@@ -54,6 +54,31 @@ const ADD_CHARACTER = gql`
     }
   }
 `;
+
+const UPDATE_CHARACTER = gql`
+  mutation updateCharacter(
+    $id: ID!
+    $name: String!
+    $power: String!
+    $image: String!
+    $race: String!
+  ) {
+    updateCharacter(
+      id: $id
+      name: $name
+      power: $power
+      image: $image
+      race: $race
+    ) {
+      id
+      name
+      power
+      race
+      image
+    }
+  }
+`;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -83,6 +108,28 @@ export class CharacterService {
         (err) => this.snack.openFailureSnackBar({})
       );
   }
+
+  update({ values, onSuccess }) {
+    this.apollo
+      .mutate<Character>({
+        mutation: UPDATE_CHARACTER,
+        variables: values,
+        refetchQueries: [{ query: GET_CHARACTERS }],
+      })
+      .subscribe(
+        () => {
+          onSuccess();
+          this.snack.openSuccessSnackBar({
+            message: 'Actualizando...',
+          });
+        },
+        (err) => {
+          console.log(err);
+          this.snack.openFailureSnackBar({});
+        }
+      );
+  }
+
   delete(name: String) {
     this.apollo
       .mutate<Boolean>({
