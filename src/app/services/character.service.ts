@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { SnackBar } from '../components/snack-bar/snack-bar.component';
 import { Character } from '../models/character';
 
 const GET_CHARACTERS = gql`
@@ -57,7 +58,7 @@ const ADD_CHARACTER = gql`
   providedIn: 'root',
 })
 export class CharacterService {
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, private snack: SnackBar) {}
 
   getAllCharacters(callback: Function) {
     this.apollo
@@ -76,8 +77,10 @@ export class CharacterService {
         variables: values,
       })
       .subscribe(
-        () => onSuccess(),
-        (err) => console.log(err)
+        () => {
+          onSuccess();
+        },
+        (err) => this.snack.openFailureSnackBar({})
       );
   }
   delete(name: String) {
@@ -86,8 +89,10 @@ export class CharacterService {
         mutation: DELETE_CHARACTERS,
         variables: { name },
       })
-      .subscribe(({ data }) => {
-        console.log(data);
+      .subscribe(() => {
+        this.snack.openSuccessSnackBar({
+          message: 'Eliminado con éxito',
+        });
       });
   }
 
@@ -99,8 +104,11 @@ export class CharacterService {
       .subscribe(
         ({ data }) => {
           callback({ newCharacter: data['newCharacter'] });
+          this.snack.openSuccessSnackBar({
+            message: 'Actualizando...',
+          });
         },
-        (err) => console.log(err)
+        (err) => this.snack.openFailureSnackBar({})
       );
   }
 
@@ -113,9 +121,12 @@ export class CharacterService {
         ({ data }) => {
           if (data['oldCharacter']) {
             callback({ key: data['oldCharacter'] });
+            this.snack.openSuccessSnackBar({
+              message: 'Actualizando...',
+            });
           }
         },
-        (err) => console.log(err)
+        (err) => this.snack.openFailureSnackBar({})
       );
   }
 }
