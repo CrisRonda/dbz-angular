@@ -1,7 +1,7 @@
 <mat-card>
   <form
     autocomplete="off"
-    [formGroup]="loginForm"
+    [formGroup]="formData"
     (ngSubmit)="onSubmit()"
     class="container"
   >
@@ -59,7 +59,7 @@
       </mat-error>
     </mat-form-field>
     <button
-      [disabled]="loginForm.invalid"
+      [disabled]="formData.invalid"
       mat-flat-button
       color="primary"
       type="submit"
