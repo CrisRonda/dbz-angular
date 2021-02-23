@@ -11,3 +11,11 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+img {
+  object-fit: contain;
+  height: 250px;
+}
+mat-card-actions {
+  display: flex;
+  justify-content: space-around;
+}

@@ -1,14 +1,34 @@
 <div class="container">
-  <mat-card class="root" *ngFor="let photo of photos">
+  <mat-card class="root" *ngFor="let character of characters">
     <mat-card-subtitle>
-      {{ photo.title }}
+      {{ character.name }}
     </mat-card-subtitle>
-    <img [src]="photo.thumbnailUrl" [alt]="photo.title" mat-card-image />
+    <img [src]="character.image" [alt]="character.image" mat-card-image />
     <mat-card-content>
-      <p>Album id: {{ photo.albumId }}</p>
+      <p><b>Poder:</b> {{ character.power }}</p>
+      <p><b>Raza:</b> {{ character.race }}</p>
     </mat-card-content>
     <mat-card-actions>
-      <a mat-flat-button [href]="photo.url" target="_blank"> Ver imagen </a>
+      <a
+        mat-raised-button
+        color="primary"
+        [href]="character.image"
+        target="_blank"
+      >
+        Ver imagen
+      </a>
+      <div>
+        <button mat-icon-button color="warn">
+          <mat-icon fontSet="fas" fontIcon="fa-edit"></mat-icon>
+        </button>
+        <button
+          (click)="deleteCharacter(character.name)"
+          mat-icon-button
+          color="warn"
+        >
+          <mat-icon fontSet="fas" fontIcon="fa-trash-alt"></mat-icon>
+        </button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>

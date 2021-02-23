@@ -50,7 +50,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-select required placeholder="Raza" formControlName="race">
-        <mat-option *ngFor="let race of races" value="race.label">
+        <mat-option *ngFor="let race of races" [value]="race">
           {{ race.label }}
         </mat-option>
       </mat-select>

@@ -1,5 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Apollo, gql } from 'apollo-angular';
+import { Character } from 'src/app/models/character';
+
+const ADD_CHARACTER = gql`
+  mutation createCharacter(
+    $name: String!
+    $power: String!
+    $image: String!
+    $race: String!
+  ) {
+    createCharacter(name: $name, power: $power, image: $image, race: $race) {
+      name
+      power
+      race
+      image
+    }
+  }
+`;
+const GET_CHARACTERS = gql`
+  {
+    character {
+      id
+      name
+      race
+      image
+      power
+    }
+  }
+`;
+
 @Component({
   selector: 'app-form-caracter',
   templateUrl: './form-caracter.component.html',
@@ -7,6 +37,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class FormCaracterComponent implements OnInit {
   private regexHttps = /(http|https)?:\/\/(\S+)/;
+  loading = true;
 
   races = [
     { id: 1, label: 'Sayan' },
@@ -16,7 +47,7 @@ export class FormCaracterComponent implements OnInit {
     { id: 5, label: 'Androide' },
     { id: 6, label: 'Desconocido' },
   ];
-  loginForm = this.form.group({
+  initialValues = {
     name: [
       '',
       [Validators.required, Validators.minLength(4), Validators.maxLength(64)],
@@ -24,8 +55,11 @@ export class FormCaracterComponent implements OnInit {
     race: ['', [Validators.required]],
     image: ['', [Validators.required, Validators.pattern(this.regexHttps)]],
     power: ['', [Validators.required]],
-  });
-  constructor(private form: FormBuilder) {}
+  };
+  loginForm = this.form.group(this.initialValues);
+  constructor(private form: FormBuilder, private apollo: Apollo) {}
+  ngOnInit(): void {}
+
   getErrorMessage(field: string): string {
     let mesj;
     const _field = this.loginForm.get(field);
@@ -53,7 +87,15 @@ export class FormCaracterComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.invalid) return;
     const formValues = this.loginForm.value;
-    console.log(formValues);
+    const formatValues = { ...formValues, race: formValues.race.label };
+    this.apollo
+      .mutate<Character>({
+        mutation: ADD_CHARACTER,
+        variables: formatValues,
+      })
+      .subscribe(() => {
+        console.log('Creado');
+        this.loginForm.reset();
+      });
   }
-  ngOnInit(): void {}
 }
