@@ -18,11 +18,11 @@
         Ver imagen
       </a>
       <div>
-        <button mat-icon-button color="warn">
+        <button mat-icon-button color="warn" (click)="openDialog(character)">
           <mat-icon fontSet="fas" fontIcon="fa-edit"></mat-icon>
         </button>
         <button
-          (click)="deleteCharacter(character.name)"
+          (click)="deleteCharacter(character)"
           mat-icon-button
           color="warn"
         >

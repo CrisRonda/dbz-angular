@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Character } from 'src/app/models/character';
 import { CharacterService } from 'src/app/services/character.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-card-character',
@@ -10,7 +12,10 @@ import { CharacterService } from 'src/app/services/character.service';
 export class CardCharacterComponent implements OnInit {
   characters: Character[];
   loading = true;
-  constructor(private CharacterService: CharacterService) {}
+  constructor(
+    private CharacterService: CharacterService,
+    public dialog: MatDialog
+  ) {}
   ngOnInit() {
     this.CharacterService.getAllCharacters(({ characters, loading }) => {
       this.characters = characters;
@@ -29,10 +34,19 @@ export class CardCharacterComponent implements OnInit {
       prevCharacters.forEach((item) => this.characters.push(item));
     });
   }
-  deleteCharacter(name: string) {
+  deleteCharacter(character: Character) {
     const res = window.confirm('¿Estás seguro de eliminar este personaje?');
     if (res) {
-      this.CharacterService.delete(name);
+      this.CharacterService.delete(character.name);
     }
+  }
+  openDialog(character: Character): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: character,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
 }

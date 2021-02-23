@@ -16,6 +16,7 @@ import { InMemoryCache } from '@apollo/client/core';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { split, ApolloClientOptions } from '@apollo/client/core';
 import { getMainDefinition } from '@apollo/client/utilities';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
     NavbarComponent,
     CardCharacterComponent,
     FormCaracterComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
