@@ -26,3 +26,9 @@ body {
   color: white !important;
   border: none;
 }
+
+.yellow-snackbar button {
+  background-color: rgb(245, 172, 14);
+  color: white !important;
+  border: none;
+}
