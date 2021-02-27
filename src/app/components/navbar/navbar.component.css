@@ -16,3 +16,10 @@
 .toolbar-small span {
   font-size: 12px;
 }
+.logo {
+  width: 33%;
+  height: 52px;
+  min-width: 250px;
+  max-width: 550px;
+  object-fit: contain;
+}

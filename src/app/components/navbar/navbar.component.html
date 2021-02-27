@@ -1,36 +1,24 @@
 <mat-toolbar color="primary" class="d-none d-md md-flex">
   <mat-toolbar-row>
-    <span>DBZ API</span>
-    <div class="container-buttons">
-      <button mat-button>Inicio</button>
-      <button mat-button>Docs</button>
-      <button mat-button>Contacto</button>
-    </div>
-    <span class="spacing"></span>
-    <button mat-icon-button aria-label="Register" [matMenuTriggerFor]="menu">
-      <mat-icon>account_circle</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon fontSet="fas" fontIcon="fa-sign-in-alt"></mat-icon>
-        Iniciar sesión
-      </button>
-      <button mat-menu-item>
-        <mat-icon fontSet="fas" fontIcon="fa-user-plus"></mat-icon>
-        Cerrar sesión
-      </button>
-    </mat-menu>
+    <img
+      class="logo"
+      src="https://res.cloudinary.com/dzh1db41l/image/upload/v1614460151/Group_5_2_n2j76t.png"
+      alt="BDZAPi"
+    />
   </mat-toolbar-row>
   <mat-toolbar-row class="toolbar-small">
     <span class="spacing"></span>
-    <span>Visitanos en: </span>
-    <button mat-icon-button aria-label="social">
+    <span>Visitame en: </span>
+    <button mat-icon-button aria-label="social" (click)="openSocialLink('')">
+      <mat-icon fontSet="fas" fontIcon="fa-link"></mat-icon>
+    </button>
+    <button mat-icon-button aria-label="social" (click)="openSocialLink('lk')">
       <mat-icon fontSet="fab" fontIcon="fa-linkedin"></mat-icon>
     </button>
-    <button mat-icon-button aria-label="social">
+    <button mat-icon-button aria-label="social" (click)="openSocialLink('gh')">
       <mat-icon fontSet="fab" fontIcon="fa-github"></mat-icon>
     </button>
-    <button mat-icon-button aria-label="social">
+    <button mat-icon-button aria-label="social" (click)="openSocialLink('fb')">
       <mat-icon fontSet="fab" fontIcon="fa-facebook-f"></mat-icon>
     </button>
   </mat-toolbar-row>
