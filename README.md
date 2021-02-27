@@ -1,27 +1,38 @@
-# Dbz
+# Dragon ball Z 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+This example has an API of characters of Dragon Ball Z.
 
-## Development server
+# Libraries
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Angular framework
+- Apollo for Graphql subscriptions
+- Angular Material 
+- [Backend project](https://github.com/CrisRonda/graphql-express)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Contains
 
-## Build
+Configuration Graphql in Real Time with subscriptions when add and delete
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+<img style="margin: 16px 0 4px" src='https://media.giphy.com/media/YroplJPYSFRdAug1YC/giphy.gif'/>
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+CRUD of characters 
 
-## Running end-to-end tests
+<img style="margin: 16px 0 4px" src="https://media.giphy.com/media/9LZ5UzOoQQYGuHSbcI/giphy.gif" />
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Use forms with Angular 
 
-## Further help
+<img style="margin: 16px 0 4px" src="https://media.giphy.com/media/MY7UxnKOJP1o8CzYSs/giphy.gif" >
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# How to run
+1. Run `yarn` or `npm i`
+2. Run `yarn start`
+
+[Github profile 🦾](https://github.com/CristianRonda)
+
+[More about me 😎](https://cristian-ronda.tk/)
+
+[Medium blog 🤓](https://cristian-ronda.medium.com/)
+
