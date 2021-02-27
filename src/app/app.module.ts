@@ -17,6 +17,7 @@ import { WebSocketLink } from '@apollo/client/link/ws';
 import { split, ApolloClientOptions } from '@apollo/client/core';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -40,10 +41,10 @@ import { DialogComponent } from './components/dialog/dialog.component';
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink) => {
         const http = httpLink.create({
-          uri: 'http://localhost:4000/',
+          uri: environment.service_url,
         });
         const ws = new WebSocketLink({
-          uri: `ws://localhost:4000/`,
+          uri: environment.service_ws,
           options: {
             reconnect: true,
           },
