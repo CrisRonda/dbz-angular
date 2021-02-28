@@ -62,7 +62,14 @@ import { environment } from 'src/environments/environment';
         );
         return {
           cache: new InMemoryCache(),
-          link,
+          link: {
+            ...link,
+            headers: {
+              'Access-Control-Allow-Origin': 'http://localhost:4200',
+              'Access-Control-Allow-Methods': 'GET',
+              'Access-Control-Allow-Headers': 'application/json',
+            },
+          },
         };
       },
       deps: [HttpLink],
