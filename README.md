@@ -1,6 +1,7 @@
 # Dragon ball Z 
 
-This example has an API of characters of Dragon Ball Z.
+This example has an GraphQL API of characters of Dragon Ball Z.
+[See the proyect](https://crisronda.github.io/dbz-angular/dbz/) 
 
 # Libraries
 
